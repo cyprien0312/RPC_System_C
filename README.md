@@ -1,19 +1,22 @@
-# RPC_System_C
-The repository you provided is an RPC (Remote Procedure Call) system implemented in C. Here's a brief overview based on the files I've analyzed:
+#  Remote Procedure Call
 
-client.c
-This file contains the client-side logic for the RPC system. It initializes the RPC client, finds the remote function named "add2", and then makes two calls to this function with different operands. The results of these calls are printed to the console.
+ 
+## 1. Project Overview
 
-rpc.c
-This file contains the core implementation of the RPC system. It provides functions for initializing the server and client, registering remote functions, finding remote functions by name, making remote function calls, and handling incoming connections and requests on the server side.
+Remote Procedure Call (RPC) is a crucial technology in distributed computing that enables software applications to communicate with each other seamlessly over a network. It provides a way for a client to call a function on a remote server as if it were a local function call. This abstraction allows developers to build distributed systems and applications that span multiple machines and platforms.
 
-rpc.h
-This is the header file for the RPC system. It defines the data structures and function prototypes used in the RPC system.
+In this project, you will be building a custom RPC system that allows computations to be split seamlessly between multiple computers. This system may differ from standard RPC systems, but the underlying principles of RPC will still apply.
 
-server.c
-This file contains the server-side logic for the RPC system. It initializes the RPC server, registers a remote function named "add2", and then starts serving incoming requests. The "add2" function adds two signed 8-bit numbers.
+Your RPC system must be written in C. Submissions that do not compile and run on a Linux cloud VM, like the one you have been provided with, may receive zero marks. You must write your own RPC code, without using existing RPC libraries.
 
-utils.h
-This header file provides utility functions and macros used in the RPC system, such as functions for creating listening and commute sockets, and functions for converting between host and network byte order for 64-bit integers.
+## 2. RPC System Architecture
 
-The contents of utils.c were not included in the current response due to size limitations. Would you like me to fetch the contents of that file as well?
+Your task is to design and code a simple Remote Procedure Call (RPC) system using a client-server architecture. The RPC system will be implemented in two files, called `rpc.c` and `rpc.h`. The resulting system can be linked to either a client or a server. For marking, we will write our own clients and servers, and so you must stick to the proposed API carefully.
+
+For testing purposes, you may run server and client programs on the same machine (e.g., your VM).
+
+## 3. Project Details
+
+Your task is to design and code the RPC system described above. You will design the application layer protocol to use. A skeleton is provided which uses a simple application programming interface (API). When we assess your submission, we will link our own testing code using the same RPC system API; what you will be assessed on is `rpc.c` (and any other supporting files compiled in by your Makefile).
+
+Note that implementing the API will require you to use sockets. This uses material covered in the lectures after the project is released.
