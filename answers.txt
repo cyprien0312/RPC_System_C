@@ -1,0 +1,26 @@
+yaofeil
+1266150
+
+1. Should the server accept calls from everyone, or just a subset of users?
+should accept from everyone as this project is only done by me. maximun client accepted is 11 by defined.
+2. Should authentication etc. be provided by the RPC framework, or by the functions that use the RPC framework?
+RPC framework
+3. What transport layer protocol should be used? What are the trade-offs?
+TCP is used. as it provides reliable, ordered, and error-checked delivery of data between applications, but it comes with more overhead and is slower than some alternatives, such as UDP, due to its complexity and need for acknowledgement of data packets.
+4. In which function(s) should the socket(s) be created?
+in rpc_init_client to create a commute_sockfd for server
+5. Should rpc_client and rpc_server be allocated dynamically or statically? What are the implications
+for the client and server code?
+statically are prefered, in the project it has predictable and constant number of client
+6. What happens if one host uses big-endian byte order and the other uses little-endian? How does that relate
+to “network byte order”?
+If these hosts directly communicate with each other without taking into account the difference in their byte orders, the received data may be misinterpreted, leading to errors.
+
+
+
+The protocol is message-based, employing two primary messages: "FIND" and "CALL".
+rpc_data will be sent separately in the following sequence: length of messages, message (eg. FIND add2), data1, data2_len, data2
+"FIND": This message is used by the client to check about the existence of a particular procedure on the server. It begins with the keyword "FIND" followed by the name of the procedure.The server responds with "FOUND" or "NOT FOUND", allowing the client to know whether the procedure can be called. 
+eg. " FOUND add2" 
+"CALL": After successfully finding a procedure, the client sends a "CALL" message to invoke it. The "CALL" message includes the name of the procedure and the payload data structured as rpc_data, which consists of data1 (an integer) and data2 (a block of memory). The length of request is sent first, followed by its content.
+eg. "CALL add2" 
